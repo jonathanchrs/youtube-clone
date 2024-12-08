@@ -6,15 +6,18 @@ import VideoIcon from "../icons/VideoIcon";
 import YoutubeLogo from "../icons/YoutubeIcon";
 import NavbarItem from "./NavbarItem";
 import { SidebarContext, SidebarContextType } from "./Layout";
+import Link from "next/link";
 
 export default function Navbar() {
   const { toggleSidebar } = useContext(SidebarContext) as SidebarContextType;
   return (
     <nav className="px-6 py-4 flex justify-between item sticky top-0 bg-white h-16">
-      <div className="flex gap-4 items-center">
-        <NavbarItem handleClick={toggleSidebar} icon={<MenuIcon />} />
-        <YoutubeLogo />
-      </div>
+      <Link href={"/"}>
+        <div className="flex gap-4 items-center">
+          <NavbarItem handleClick={toggleSidebar} icon={<MenuIcon />} />
+          <YoutubeLogo />
+        </div>
+      </Link>
       <div className="flex justify-between gap-6 items-center">
         <div className="flex gap-5">
           <NavbarItem handleClick={() => {}} icon={<VideoIcon />} />

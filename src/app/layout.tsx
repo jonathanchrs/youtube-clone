@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import QueryProvider from "./QueryProvider";
 import Layout from "@/components/layout/Layout";
+import { Suspense } from "react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,7 +32,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen`}
       >
         <QueryProvider>
-          <Layout>{children}</Layout>
+          <Suspense>
+            <Layout>{children}</Layout>
+          </Suspense>
         </QueryProvider>
       </body>
     </html>

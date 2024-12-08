@@ -5,14 +5,14 @@ import {
   channelsResponseSchema,
   videosResponseSchema,
 } from "@/zod";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 const YT_BASE_URL = process.env.SECRET_YOUTUBE_API_BASE_URL;
 const YT_API_KEY = process.env.SECRET_YOUTUBE_API_KEY;
 
 export const getVideos = async () => {
   const { data } = await axios.get(
-    `${YT_BASE_URL}/videos?key=${YT_API_KEY}&chart=mostPopular&part=snippet,statistics,contentDetails&field=items(id,snippet,statistics,contentDetails)`
+    `${YT_BASE_URL}/videos?key=${YT_API_KEY}&chart=mostPopular&part=snippet,statistics,contentDetails&field=items(id,snippet,statistics,contentDetails)&maxResults=20`
   );
   const videos = videosResponseSchema.parse(data);
   return videos;

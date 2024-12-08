@@ -6,7 +6,7 @@ import { useGetRandomVideos } from "@/queries/useGetRandomVideos";
 const Home = () => {
   const { data } = useGetRandomVideos();
   return (
-    <main className="p-3 flex flex-wrap w-full gap-6 content-start">
+    <main className="p-3 flex flex-wrap w-full gap-6 content-start overflow-scroll">
       {data &&
         data.items.map((video, index) => (
           <VideoItem
@@ -17,6 +17,7 @@ const Home = () => {
             viewCounts={video.statistics.viewCount}
             channelTitle={video.snippet.channelTitle}
             publishedAt={video.snippet.publishedAt}
+            videoId={video.id}
           />
         ))}
     </main>

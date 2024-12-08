@@ -6,7 +6,7 @@ export default function ChannelItem({
   channelName: string;
 }) {
   return (
-    <div className="flex gap-6 px-6 py-3 text-sm items-center hover:bg-yt-gray text-gray-600 hover:text-gray-950 hover:cursor-pointer">
+    <div className="flex gap-6 px-6 py-3 text-sm items-center hover:bg-custom-gray text-gray-600 hover:text-gray-950 hover:cursor-pointer">
       <img
         src={thumbnail}
         height="30px"
