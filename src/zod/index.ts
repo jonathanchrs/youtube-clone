@@ -53,7 +53,7 @@ const videosResponseSchema = z.object({
         viewCount: z.string(),
         likeCount: z.string(),
         favoriteCount: z.string(),
-        commentCount: z.string(),
+        commentCount: z.string().optional(),
       }),
     })
   ),

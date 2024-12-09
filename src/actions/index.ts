@@ -12,7 +12,7 @@ const YT_API_KEY = process.env.SECRET_YOUTUBE_API_KEY;
 
 export const getVideos = async () => {
   const { data } = await axios.get(
-    `${YT_BASE_URL}/videos?key=${YT_API_KEY}&chart=mostPopular&part=snippet,statistics,contentDetails&field=items(id,snippet,statistics,contentDetails)&maxResults=20`
+    `${YT_BASE_URL}/videos?key=${YT_API_KEY}&chart=mostPopular&part=snippet,statistics,contentDetails&field=items(id,snippet,statistics,contentDetails)&maxResults=10`
   );
   const videos = videosResponseSchema.parse(data);
   return videos;
@@ -31,7 +31,5 @@ export const getRandomChannels = async () => {
     `${YT_BASE_URL}/search?key=${YT_API_KEY}&part=snippet&channelType=any&type=channel&q=game`
   );
   const channel = channelsResponseSchema.parse(data);
-  console.log(channel);
-
   return channel;
 };
