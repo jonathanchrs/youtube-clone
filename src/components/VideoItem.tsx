@@ -40,7 +40,10 @@ const VideoItem = ({
         <div className="flex gap-3">
           {data && (
             <Image
-              src={data.items[0].snippet.thumbnails.high.url}
+              src={
+                data.items[0].snippet.thumbnails.high.url ??
+                data.items[0].snippet.thumbnails.default.url
+              }
               width={45}
               height={45}
               alt="channel thumbnail"

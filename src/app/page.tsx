@@ -11,7 +11,10 @@ const Home = () => {
         data.items.map((video, index) => (
           <VideoItem
             key={`video-${index}`}
-            videoThumbnail={video.snippet.thumbnails.high.url}
+            videoThumbnail={
+              video.snippet.thumbnails.high?.url ??
+              video.snippet.thumbnails.default.url
+            }
             videoTitle={video.snippet.title}
             channelId={video.snippet.channelId}
             viewCounts={video.statistics.viewCount}
