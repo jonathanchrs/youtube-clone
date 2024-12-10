@@ -24,21 +24,27 @@ const videosResponseSchema = z.object({
               height: z.number(),
             })
             .optional(),
-          high: z.object({
-            url: z.string().url(),
-            width: z.number(),
-            height: z.number(),
-          }),
-          standard: z.object({
-            url: z.string().url(),
-            width: z.number(),
-            height: z.number(),
-          }),
-          maxres: z.object({
-            url: z.string().url(),
-            width: z.number(),
-            height: z.number(),
-          }),
+          high: z
+            .object({
+              url: z.string().url(),
+              width: z.number(),
+              height: z.number(),
+            })
+            .optional(),
+          standard: z
+            .object({
+              url: z.string().url(),
+              width: z.number(),
+              height: z.number(),
+            })
+            .optional(),
+          maxres: z
+            .object({
+              url: z.string().url(),
+              width: z.number(),
+              height: z.number(),
+            })
+            .optional(),
         }),
         channelTitle: z.string(),
         tags: z.array(z.string()).optional(),
