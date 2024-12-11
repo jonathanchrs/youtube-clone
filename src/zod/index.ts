@@ -130,7 +130,13 @@ const channelResponseSchema = z.object({
           title: z.string(),
           description: z.string(),
         }),
-        country: z.string(),
+        country: z.string().optional(),
+      }),
+      statistics: z.object({
+        viewCount: z.string(),
+        subscriberCount: z.string(),
+        hiddenSubscriberCount: z.boolean(),
+        videoCount: z.string(),
       }),
     })
   ),
