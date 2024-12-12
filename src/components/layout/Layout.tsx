@@ -34,7 +34,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
     >
       <main>
         <Navbar />
-        <div className="flex h-[calc(100vh-4rem)]">
+        <div className="flex h-[calc(100vh-4rem)] scrollbar-hide scrollbar-hover">
           <Sidebar />
           {children}
         </div>

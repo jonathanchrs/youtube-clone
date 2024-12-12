@@ -1,7 +1,7 @@
 "use client";
 
 import { useGetChannel } from "@/queries/useGetChannel";
-import { formatNumber } from "@/utils";
+import { formatDate, formatNumber } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -29,13 +29,13 @@ const VideoItem = ({
 
   return (
     <Link href={`/watch?v=${videoId}`}>
-      <main className="lg:w-[340px] md:w-[400px] h-fit">
+      <main className="w-full">
         <Image
           src={videoThumbnail}
           alt="thumbnail"
           width={400}
           height={20}
-          className="aspect-video rounded-2xl lg:w-[340px] md:w-[400px] object-cover"
+          className="aspect-video rounded-2xl w-full object-cover"
         />
         <div className="flex gap-3">
           {data && (
@@ -51,12 +51,13 @@ const VideoItem = ({
             />
           )}
           <div className="mt-3">
-            <h4 className="font-bold text-wrap">{videoTitle}</h4>
+            <h2 className="font-bold text-wrap">{videoTitle}</h2>
             <div>
-              <p className="text-gray-500 font-semibold">{channelTitle}</p>
-              <p className="text-gray-500 font-semibold">{`${formatNumber(
-                viewCounts
-              )} views `}</p>
+              <p className="text-gray-500 font-medium">{channelTitle}</p>
+              <p className="text-gray-500 font-medium">
+                {`${formatNumber(viewCounts)} views `} &#x2022;{" "}
+                {formatDate(publishedAt)}
+              </p>
             </div>
           </div>
         </div>

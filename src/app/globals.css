@@ -10,14 +10,14 @@
     display: none; /* Chrome, Safari */
   }
   .scrollbar-hover:hover {
-    scrollbar-width: auto; /* Firefox */
+    scrollbar-width: none; /* Firefox */
   }
   .scrollbar-hover:hover::-webkit-scrollbar {
     display: block; /* Chrome, Safari */
-    width: 2px; /* Adjust scrollbar width as needed */
+    width: 0px; /* Adjust scrollbar width as needed */
   }
   .scrollbar-hover:hover::-webkit-scrollbar-thumb {
     background-color: #f4f4f4; /* Customize scrollbar color */
-    border-radius: 4px;
+    border-radius: 0px;
   }
 }

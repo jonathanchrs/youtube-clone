@@ -6,7 +6,7 @@ import { useGetRandomVideos } from "@/queries/useGetRandomVideos";
 const Home = () => {
   const { data } = useGetRandomVideos();
   return (
-    <main className="p-3 flex flex-wrap w-full gap-6 content-start overflow-scroll">
+    <main className="p-3 w-full grid grid-cols-1 xl:grid-cols-4 2xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2 gap-x-4 gap-y-10 overflow-y-scroll content-start">
       {data &&
         data.items.map((video, index) => (
           <VideoItem

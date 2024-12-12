@@ -12,12 +12,12 @@ export default function Navbar() {
   const { toggleSidebar } = useContext(SidebarContext) as SidebarContextType;
   return (
     <nav className="px-6 py-4 flex justify-between item sticky top-0 bg-white h-16">
-      <Link href={"/"}>
-        <div className="flex gap-4 items-center">
-          <NavbarItem handleClick={toggleSidebar} icon={<MenuIcon />} />
+      <div className="flex gap-4 items-center">
+        <NavbarItem handleClick={toggleSidebar} icon={<MenuIcon />} />
+        <Link href={"/"}>
           <YoutubeLogo />
-        </div>
-      </Link>
+        </Link>
+      </div>
       <div className="flex justify-between gap-6 items-center">
         <div className="flex gap-5">
           <NavbarItem handleClick={() => {}} icon={<VideoIcon />} />

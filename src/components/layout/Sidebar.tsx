@@ -1,19 +1,30 @@
+"use client";
+
 import ChannelList from "./sidebar-menu/ChannelListGroup";
 import MoreFromYoutube from "./sidebar-menu/MoreFromYoutubeGroup";
 import VideoGroup from "./sidebar-menu/VideoGroup";
 import OtherGroup from "./sidebar-menu/OtherGroup";
 import GeneralGroup from "./sidebar-menu/GeneralGroup";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { SidebarContext, SidebarContextType } from "./Layout";
+import { usePathname } from "next/navigation";
 
 export default function Sidebar() {
-  const { isOpen } = useContext(SidebarContext) as SidebarContextType;
+  const { isOpen, setIsOpen } = useContext(
+    SidebarContext
+  ) as SidebarContextType;
+  const pathname = usePathname();
+  const isHome = pathname == "/";
+
+  useEffect(() => {
+    if (!isHome) setIsOpen(false);
+  }, [pathname]);
 
   return (
     <div
-      className={`w-[250px] h-full overflow-y-auto scrollbar-hide scrollbar-hover  ${
+      className={`min-w-[250px] h-[calc(100vh-4rem)] overflow-y-auto scrollbar-hide scrollbar-hover bg-white ${
         !isOpen && "hidden"
-      }`}
+      } ${!isHome && "absolute"}`}
     >
       <GeneralGroup />
       <hr />
