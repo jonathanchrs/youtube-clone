@@ -3,9 +3,12 @@
 import {
   channelResponseSchema,
   channelsResponseSchema,
+  commentResponseSchema,
+  subscriptionResponseSchema,
   videosResponseSchema,
 } from "@/zod";
 import axios from "axios";
+import { getServerSession } from "next-auth";
 
 const YT_BASE_URL = process.env.SECRET_YOUTUBE_API_BASE_URL;
 const YT_API_KEY = process.env.SECRET_YOUTUBE_API_KEY;
@@ -40,4 +43,31 @@ export const getRandomChannels = async () => {
   );
   const channel = channelsResponseSchema.parse(data);
   return channel;
+};
+
+export const getVideoComments = async (videoId: string) => {
+  console.log(videoId);
+  const { data } = await axios.get(
+    `${YT_BASE_URL}/commentThreads?key=${YT_API_KEY}&part=id,snippet&videoId=${videoId}`
+  );
+  const comments = commentResponseSchema.parse(data);
+
+  return comments;
+};
+
+export const getChannelSubscription = async () => {
+  // const getCookies = await cookies();
+
+  // const token = getCookies.get("next-auth.session-token")?.value || "";
+  // console.log(token);
+  const session = await getServerSession();
+
+  const { data } = await axios.get(`${YT_BASE_URL}/subscriptions?mine=true`, {
+    headers: {
+      Authorization: `Bearer ${session?.user.token}`,
+    },
+  });
+
+  const subscription = subscriptionResponseSchema.parse(data);
+  return subscription;
 };

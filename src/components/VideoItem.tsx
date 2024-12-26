@@ -4,7 +4,6 @@ import { useGetChannel } from "@/queries/useGetChannel";
 import { formatDate, formatNumber } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 type VideoItemProps = {
   videoId: string;
@@ -14,6 +13,7 @@ type VideoItemProps = {
   videoTitle: string;
   viewCounts: string;
   publishedAt: string;
+  detailPosition?: "bottom" | "right";
 };
 
 const VideoItem = ({
@@ -24,21 +24,24 @@ const VideoItem = ({
   videoTitle,
   viewCounts,
   publishedAt,
+  detailPosition = "bottom",
 }: VideoItemProps) => {
   const { data } = useGetChannel(channelId);
 
   return (
     <Link href={`/watch?v=${videoId}`}>
-      <main className="w-full">
+      <main className={`w-full ${detailPosition === "right" && "flex gap-3"}`}>
         <Image
           src={videoThumbnail}
           alt="thumbnail"
           width={400}
           height={20}
-          className="aspect-video rounded-2xl w-full object-cover"
+          className={`aspect-video rounded-2xl object-cover ${
+            detailPosition === "right" ? "h-36 w-auto" : "w-full"
+          }`}
         />
         <div className="flex gap-3">
-          {data && (
+          {detailPosition === "bottom" && data && (
             <Image
               src={
                 data.items[0].snippet.thumbnails.high.url ??
@@ -50,7 +53,7 @@ const VideoItem = ({
               className="aspect-square rounded-full mt-3 w-[45px] h-[45px]"
             />
           )}
-          <div className="mt-3">
+          <div className={`${detailPosition !== "right" && "mt-3"}`}>
             <h2 className="font-bold text-wrap">{videoTitle}</h2>
             <div>
               <p className="text-gray-500 font-medium">{channelTitle}</p>

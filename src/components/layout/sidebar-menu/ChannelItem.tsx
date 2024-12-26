@@ -14,7 +14,7 @@ export default function ChannelItem({
         alt="channel"
         className="rounded-full"
       />
-      {channelName}
+      <h5 className="truncate">{channelName}</h5>
     </div>
   );
 }

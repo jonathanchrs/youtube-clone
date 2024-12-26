@@ -1,3 +1,5 @@
+"use client";
+
 import { useContext } from "react";
 import BellIcon from "../icons/BellIcon";
 import ListIcon from "../icons/ListIcon";
@@ -7,9 +9,12 @@ import YoutubeLogo from "../icons/YoutubeIcon";
 import NavbarItem from "./NavbarItem";
 import { SidebarContext, SidebarContextType } from "./Layout";
 import Link from "next/link";
+import { signIn, useSession, signOut } from "next-auth/react";
 
 export default function Navbar() {
   const { toggleSidebar } = useContext(SidebarContext) as SidebarContextType;
+  const { data: session, status } = useSession();
+
   return (
     <nav className="px-6 py-4 flex justify-between item sticky top-0 bg-white h-16">
       <div className="flex gap-4 items-center">
@@ -22,12 +27,13 @@ export default function Navbar() {
         <div className="flex gap-5">
           <NavbarItem handleClick={() => {}} icon={<VideoIcon />} />
           <NavbarItem handleClick={() => {}} icon={<ListIcon />} />
-          <NavbarItem handleClick={() => {}} icon={<BellIcon />} />
+          <NavbarItem handleClick={() => signOut()} icon={<BellIcon />} />
         </div>
         <img
-          src="https://yt3.ggpht.com/ytc/AIdro_n1Ribd7LwdP_qKtqWL3ZDfIgv9M1d6g78VwpHGXVR2Ir4=s88-c-k-c0x00ffffff-no-rj"
+          src={session?.user?.image ?? "/images/avatar.png"}
           alt="channel thumbnail"
           className="w-7 h-7 rounded-full"
+          onClick={() => signIn("google")}
         />
       </div>
     </nav>

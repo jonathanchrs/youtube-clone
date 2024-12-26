@@ -1,10 +1,12 @@
 "use client";
 
-import { useGetRandomChannels } from "@/queries/useGetRandomChannels";
+import { useSession } from "next-auth/react";
 import ChannelItem from "./ChannelItem";
+import { useGetSubscriptionChannel } from "@/queries/useGetSubscription";
 
 export default function ChannelList() {
-  const { data } = useGetRandomChannels();
+  const { data } = useGetSubscriptionChannel();
+  const { data: session } = useSession();
 
   return (
     <div>

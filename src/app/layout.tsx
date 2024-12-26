@@ -5,6 +5,7 @@ import QueryProvider from "./QueryProvider";
 import Layout from "@/components/layout/Layout";
 import { Suspense } from "react";
 import { Roboto } from "next/font/google";
+import AuthSessionProvider from "./AuthSessionProvider";
 
 const roboto = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -39,11 +40,13 @@ export default function RootLayout({
       <body
         className={`${roboto.className} antialiased h-screen scrollbar-hide scrollbar-hover`}
       >
-        <QueryProvider>
-          <Suspense>
-            <Layout>{children}</Layout>
-          </Suspense>
-        </QueryProvider>
+        <AuthSessionProvider>
+          <QueryProvider>
+            <Suspense>
+              <Layout>{children}</Layout>
+            </Suspense>
+          </QueryProvider>
+        </AuthSessionProvider>
       </body>
     </html>
   );
